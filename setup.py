@@ -9,21 +9,13 @@ except ImportError:
     from distutils.core import setup
 
 
-version = ''
-with open('django_oss_storage/__init__.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
-
-if not version:
-    raise RuntimeError('Cannot find version information')
-
-
 with open('README.rst', 'rb') as f:
     readme = f.read().decode('utf-8')
 
 setup(
     name='livingbio-django-oss-storage',
-    version=version,
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
     description='Django Aliyun OSS (Object Storage Service) storage',
     long_description=readme,
     packages=['django_oss_storage'],
